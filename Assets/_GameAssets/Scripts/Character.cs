@@ -5,52 +5,44 @@ using UnityEngine;
 
 namespace SS
 {
-    public abstract class Character : MonoBehaviour
+    public abstract class Character
     {
-        //[SerializeField] Rigidbody2D m_rb2D;
-        //[SerializeField] Transform m_spritesParent;
+        public Controller Controller { get; protected set; }
 
-        protected Dictionary<string, Status> m_statusDict;
+        public List<Status> Statuses { get; protected set; }
 
-        protected abstract void InitStatuses();
-
-        protected virtual void OnEnable()
+        public Character()
         {
-            StartCoroutine(_HandleStatuses());
+            Statuses = new List<Status>();
         }
 
-        IEnumerator _HandleStatuses()
+        protected IEnumerator _HandleStatus()
         {
-            InitStatuses();
-
             while(true)
             {
-                // update semua status
+                foreach (var status in Statuses)
+                    status.UpdateStatus();
+
                 yield return new WaitForSeconds(1.0f);
             }
         }
+    }
 
-        //[SerializeField] float m_walkSpeed = 1.0f;
-        //Vector2 m_movementInput;
+    public class Character_Humanoid : Character
+    {
+        public Character_Humanoid(Controller controller) : base()
+        {
+            Controller = controller;
+            _SetupCharacter();
 
-        //private void Update()
-        //{
-        //    var xInput = Input.GetAxisRaw("Horizontal");
-        //    var yInput = Input.GetAxisRaw("Vertical");
+            Controller.StartCoroutine(_HandleStatus());
+        }
 
-        //    m_movementInput = new Vector2(xInput, yInput);
-
-        //    var timeInputPrev = Input.GetKeyUp(KeyCode.Alpha1);
-        //    var timeInputNext = Input.GetKeyUp(KeyCode.Alpha2);
-        //    var timeInput = (timeInputNext) ? 1 : (timeInputPrev) ? -1 : 0;
-        //    Time.timeScale = Mathf.Clamp(Time.timeScale + timeInput, 0, 2);
-
-        //}
-
-        //private void FixedUpdate()
-        //{
-        //    m_rb2D.velocity = m_movementInput.normalized * m_walkSpeed;
-        //    m_spritesParent.rotation = m_movementInput.magnitude > 0 ? Quaternion.Euler(0, 0, Mathf.Atan2(m_movementInput.y, m_movementInput.x) * (180 / Mathf.PI)) : m_spritesParent.rotation;
-        //}
+        private void _SetupCharacter()
+        {
+            Statuses.Add(new Status_Warmth(36.5f, new MinMax(35, 38)));
+            Statuses.Add(new Status_Hunger());
+            Statuses.Add(new Status_Thirst());
+        }
     }
 }

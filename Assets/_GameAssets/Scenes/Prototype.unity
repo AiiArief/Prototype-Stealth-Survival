@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 32413316}
   - component: {fileID: 32413318}
   - component: {fileID: 32413320}
-  - component: {fileID: 32413319}
+  - component: {fileID: 32413321}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -180,39 +180,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &32413319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32413315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa092bf58c831074583c580efaed17e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_rb2D: {fileID: 32413318}
-  m_spritesParent: {fileID: 743352316}
-  m_needs:
-  - Name: Health
-    CurrentPercentage: 1
-  - Name: Air
-    CurrentPercentage: 1
-  - Name: Warmth
-    CurrentPercentage: 1
-  - Name: Sleep
-    CurrentPercentage: 1
-  - Name: Water
-    CurrentPercentage: 1
-  - Name: Bladder
-    CurrentPercentage: 0
-  - Name: Food
-    CurrentPercentage: 1
-  - Name: Rectum
-    CurrentPercentage: 0
-  m_statusEffects: []
-  m_walkSpeed: 1.5
 --- !u!58 &32413320
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -229,6 +196,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45
+--- !u!114 &32413321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32413315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7c45a29ae70485bafcf3e6d87e7ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rb2D: {fileID: 32413318}
+  m_spritesParent: {fileID: 743352316}
+  m_walkSpeed: 1
 --- !u!1 &121175122
 GameObject:
   m_ObjectHideFlags: 0
@@ -3078,7 +3060,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1133202400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aaa5a90a06977449b0d3bcfca8e25c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a10b3560444149a1924b39ab839efdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_debugMode: 1

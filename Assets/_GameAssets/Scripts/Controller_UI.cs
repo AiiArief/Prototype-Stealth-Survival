@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 namespace SS
 {
-    public class UIController : MonoBehaviour
+    public class Controller_UI : Controller
     {
-        public static UIController Instance;
+        public static Controller_UI Instance;
 
         [SerializeField] bool m_debugMode = true;
         [SerializeField] Transform m_debugPanel;
@@ -29,18 +29,13 @@ namespace SS
             m_debugPanel.gameObject.SetActive(m_debugMode);
             if (m_debugMode)
             {
-                var needStr = "Needs : \n";
-                foreach (var need in Character.Instance.Needs)
-                    needStr += need.Name + " - " + need.CurrentPercentage + "\n";
+                var statusStr = "Statuses : \n";
+                foreach (var status in Controller_Player.Instance.Character.Statuses)
+                    statusStr += status.Name + " - " + status.GenericValue + "\n";
 
-                var statusEffectStr = "Status Effects : \n";
-                foreach (var statusEffect in Character.Instance.StatusEffects)
-                    statusEffectStr += statusEffect.Name + "\n";
-
-                m_debugText.text = 
-                    string.Format("{0}:{1}:{2}", m_currentDateTime.Hour, m_currentDateTime.Minute, m_currentDateTime.Second) + " - " + Time.timeScale + "\n" + 
-                    needStr + "\n" + 
-                    statusEffectStr;
+                m_debugText.text =
+                    string.Format("{0}:{1}:{2}", m_currentDateTime.Hour, m_currentDateTime.Minute, m_currentDateTime.Second) + " - " + Time.timeScale + "\n" +
+                    statusStr;
             }
         }
 
